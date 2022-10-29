@@ -1,18 +1,11 @@
 #!/usr/bin/env python3
 
 
-def normalized(a, axis=-1, order=2):
-    import numpy as np
-
-    l2 = np.atleast_1d(np.linalg.norm(a, order, axis))
-    l2[l2 == 0] = 1
-    return a / np.expand_dims(l2, axis)
-
-
 def main(
     source_folder: str,
     output_file: str = "output.tsv",
     batch_size: int = 32,
+    model_file: str = "./modules/improved-aesthetic-predictor/sac+logos+ava1-l14-linearMSE.pth",
 ):
     import torch
     import clip
@@ -20,6 +13,7 @@ def main(
     from tqdm import tqdm
     from modules.mlp import MLP
     from modules.dataset import ImageDataset
+    from modules.util import normalized
     from torch.utils.data import DataLoader
 
     device = "cuda" if torch.cuda.is_available() else "cpu"
@@ -30,11 +24,7 @@ def main(
     mlp = MLP(768)
 
     print("Loading MLP...")
-    mlp.load_state_dict(
-        torch.load(
-            "./modules/improved-aesthetic-predictor/sac+logos+ava1-l14-linearMSE.pth"
-        )
-    )
+    mlp.load_state_dict(torch.load(model_file))
     mlp.to(device)
     mlp.eval()
 

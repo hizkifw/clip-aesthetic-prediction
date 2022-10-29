@@ -2,4 +2,7 @@ venv/
 .mypy_cache
 .vim
 *.tsv
+*.npy
+*.pth
+*.log
 __pycache__
