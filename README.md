@@ -24,8 +24,7 @@ source ./venv/bin/activate
 pip install -r requirements.txt
 
 # Run inference on a directory of images
-python ./infer.py \
+python ./infer.py ./path/to/images/ \
   --batch-size 32 \
-  --source-folder ./path/to/images/ \
   --output-file output.tsv
 ```
