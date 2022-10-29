@@ -1,0 +1,5 @@
+venv/
+.mypy_cache
+.vim
+*.tsv
+__pycache__

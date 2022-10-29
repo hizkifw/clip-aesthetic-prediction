@@ -1,0 +1,3 @@
+[submodule "modules/improved-aesthetic-predictor"]
+	path = modules/improved-aesthetic-predictor
+	url = https://github.com/christophschuhmann/improved-aesthetic-predictor.git
